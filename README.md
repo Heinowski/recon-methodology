@@ -1,1 +1,72 @@
 # recon-methodology
+Subdomain enumeration 
+
+subfinder -d [target.com](http://target.com) -all -recursive > target.txt
+
+curl -s "https://crt.sh/?q=%25.myoppo.com&output=json" | jq -r '.[].name_value' | sed 's/\*\.//g' | sort -u > myopposub.txt
+
+echo test.com | assetfinder --subs-only >> asset.txt
+
+subfinder -dL domains.txt -o subfinder.txt
+
+google dorks for hidden subdomains : site:*.target.com 
+
+site:*.*.target.com
+
+dnsenum [target.com](http://target.com) 
+
+gobuster dns -d [target.com](https://target.com) -w wordlist
+
+gobuster vhost -u inlanefreight.htb -w /home/kali/seclist/Discovery/DNS/shubs-subdomains.txt  --append-domain
+
+cat subdomains.txt | httpx -sc -title -mc 200 
+
+cat subdomains.txt | httpx -p 8080,8443,8000,8888,8081,3306,5432,6379,27019,15672,10000,9090,5900 -title -sc -server -ip > result.txt
+
+Scanning ports and services
+
+nmap -sC -sV -sS ip 
+
+shodan 
+
+URLS 
+
+katana -u https://target.com
+
+gau target.com
+
+echo “target.com” | waybackurls 
+
+waymore
+
+Collecting parameters 
+
+Paramspider
+
+arjun -u https://target.com/login -w burp-parameter-names.txt
+
+fuzzing the parameters names  
+
+Fuzzing for directories
+
+FFUF 
+
+dirsearch
+
+dirhunt 
+
+cat subdomains.txt | [dirsearch.py](http://dirsearch.py) -i 200 -e php,bak,old,zip,tar.gz,log,conf,json,asp,jsp,aspx,yml,yaml,rar —stdin
+
+Crawling the webapp 
+
+Reconspider.py
+
+Collecting JS files
+
+ katana -u [https://www.example.com](https://www.example.com/) | grep ".js$" | httpx -mc 200 | sort -u > js-files.txt
+echo [example.com](http://example.com/) | gau | grep ".js$" | httpx -mc 200 | sort -u> js-files.txt 
+
+Google Dorking 
+
+- site:*.gapinc.com inurl:”*admin | login” | inurl:.php | .asp
+- intext:"index of /.git"
