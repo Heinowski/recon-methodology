@@ -57,14 +57,20 @@ dirhunt
 
 cat subdomains.txt | [dirsearch.py](http://dirsearch.py) -i 200 -e php,bak,old,zip,tar.gz,log,conf,json,asp,jsp,aspx,yml,yaml,rar —stdin
 
-Crawling the webapp 
-
+For Crawling the webapp :
 Reconspider.py
 
 Collecting JS files
 
  katana -u [https://www.example.com](https://www.example.com/) | grep ".js$" | httpx -mc 200 | sort -u > js-files.txt
-echo [example.com](http://example.com/) | gau | grep ".js$" | httpx -mc 200 | sort -u> js-files.txt 
+echo [example.com] | gau | grep ".js$" | httpx -mc 200 | sort -u> js-files.txt 
+#another way for gau 
+gau example.com |  grep ".js$" | httpx -mc 200 | sort -u> js-files.txt
+For extracting some interesting things from the js files : 
+
+cat js_files.txt | while read url; do curl -s $url >> all_javascript_dump.txt; done
+grep -iE "apikey|token|secret|authorization|bearer" > all_javascript_dump.txt
+Also you can use Linkfinder
 
 Google Dorking 
 
