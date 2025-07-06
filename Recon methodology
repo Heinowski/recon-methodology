@@ -13,6 +13,10 @@ google dorks for hidden subdomains : site:*.target.com
 
 site:*.*.target.com
 
+Use security trails for searching for a subdomains or keywords that belongs for the domain 
+
+https://chaos.projectdiscovery.io/ , also for searching for subdomains 
+
 dnsenum [target.com](http://target.com) 
 
 gobuster dns -d [target.com](https://target.com) -w wordlist
@@ -71,6 +75,7 @@ For extracting some interesting things from the js files :
 cat js_files.txt | while read url; do curl -s $url >> all_javascript_dump.txt; done
 grep -iE "apikey|token|secret|authorization|bearer" > all_javascript_dump.txt
 Also you can use Linkfinder
+
 
 Google Dorking 
 
