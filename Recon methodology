@@ -27,6 +27,10 @@ cat subdomains.txt | httpx -sc -title -mc 200
 
 cat subdomains.txt | httpx -p 8080,8443,8000,8888,8081,3306,5432,6379,27019,15672,10000,9090,5900 -title -sc -server -ip > result.txt
 
+Extracting ips :
+
+curl -s "[https://www.virustotal.com/vtapi/v2/domain/report?domain=](https://www.virustotal.com/vtapi/v2/domain/report?domain=www.nasa.gov&apikey=0696339f5806cc668f789f01)[www.nasa.gov](www.marksandspencer.in)[&apikey=0696339f5806cc668f789f01](https://www.virustotal.com/vtapi/v2/domain/report?domain=www.nasa.gov&apikey=0696339f5806cc668f789f01)" | jq -r '.. | .ip_address? // empty' | grep -Eo '([0-9]{1,3}\.){3}[0-9]{1,3}'
+
 Scanning ports and services
 
 nmap -sC -sV -sS ip 
